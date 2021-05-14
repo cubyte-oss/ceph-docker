@@ -17,7 +17,7 @@ RUN patch os_linux.cpp hpsa-respect-hba-mode-1472.patch \
  && ./configure \
  && make
 
-FROM ceph/ceph:v15.2.11
+FROM ceph/ceph:v15.2.12
 
 COPY --from=build /build/smartctl /usr/sbin/smartctl
 
