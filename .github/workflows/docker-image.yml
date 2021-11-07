@@ -19,6 +19,6 @@ jobs:
         tag="${GITHUB_REF##*/}"
         image_name="pschichtel/ceph:${tag}"
         echo "${DOCKERHUB_PASSWORD}" | docker login -u "${DOCKERHUB_USERNAME}" --password-stdin
-        docker build . --file Dockerfile --build-arg UPSTREAM_TAG="$tag" --tag "image_name"
+        docker build . --file Dockerfile --build-arg UPSTREAM_TAG="$tag" --tag "$image_name"
         docker push "$image_name"
 
