@@ -1,3 +1,5 @@
+ARG UPSTREAM_TAG="v16.2.5"
+
 FROM debian:buster AS build
 
 RUN apt-get update
@@ -17,7 +19,7 @@ RUN patch os_linux.cpp hpsa-respect-hba-mode-1472.patch \
  && ./configure \
  && make
 
-FROM ceph/ceph:v16.2.5
+FROM ceph/ceph:$UPSTREAM_TAG
 
 COPY --from=build /build/smartctl /usr/sbin/smartctl
 
