@@ -19,7 +19,7 @@ RUN patch os_linux.cpp hpsa-respect-hba-mode-1472.patch \
  && ./configure \
  && make
 
-FROM ceph/ceph:$UPSTREAM_TAG
+FROM quay.io/ceph/ceph:$UPSTREAM_TAG
 
 COPY --from=build /build/smartctl /usr/sbin/smartctl
 
