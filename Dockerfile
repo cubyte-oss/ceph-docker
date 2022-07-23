@@ -1,4 +1,4 @@
-ARG UPSTREAM_TAG="v17.2.1"
+ARG UPSTREAM_TAG="v17.2.2"
 
 FROM debian:buster AS build
 
