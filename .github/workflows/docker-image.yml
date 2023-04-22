@@ -23,7 +23,12 @@ jobs:
     - name: Build the Docker image
       run: |
         tag="${GITHUB_REF##*/}"
+        upstream_tag="$tag"
+        if [ "$tag" = "main" ]
+        then
+          upstream_tag="latest"
+        fi
         image_name="ghcr.io/cubyte-oss/ceph:${tag}-cubyte"
-        podman build --build-arg UPSTREAM_TAG="$tag" -t "$image_name" .
+        podman build --build-arg UPSTREAM_TAG="$upstream_tag" -t "$image_name" .
         podman push "$image_name"
 
