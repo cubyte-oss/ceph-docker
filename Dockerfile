@@ -1,13 +1,13 @@
 ARG UPSTREAM_TAG
 
-FROM debian:buster AS build
+FROM debian:bookworm AS build
 
 RUN apt-get update
 
 RUN apt-get install -y build-essential automake curl
 
 RUN mkdir /build \
- && curl -o /smartmontools.tar.gz https://altushost-swe.dl.sourceforge.net/project/smartmontools/smartmontools/7.3/smartmontools-7.3.tar.gz \
+ && curl -o /smartmontools.tar.gz https://altushost-swe.dl.sourceforge.net/project/smartmontools/smartmontools/7.4/smartmontools-7.4.tar.gz \
  && tar xf /smartmontools.tar.gz --strip-components=1 -C /build
 
 WORKDIR /build
