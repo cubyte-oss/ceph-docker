@@ -1,10 +1,8 @@
 ARG UPSTREAM_TAG
 
-FROM debian:bookworm AS build
+FROM quay.io/ceph/ceph:$UPSTREAM_TAG AS build
 
-RUN apt-get update
-
-RUN apt-get install -y build-essential automake curl
+RUN dnf install -y automake curl gcc gcc-c++ make
 
 RUN mkdir /build \
  && curl -o /smartmontools.tar.gz https://altushost-swe.dl.sourceforge.net/project/smartmontools/smartmontools/7.4/smartmontools-7.4.tar.gz \
