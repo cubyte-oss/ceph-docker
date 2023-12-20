@@ -26,7 +26,7 @@ jobs:
         upstream_tag="$tag"
         if [ "$tag" = "main" ]
         then
-          upstream_tag="v17"
+          upstream_tag="v18"
         fi
         image_name="ghcr.io/cubyte-oss/ceph:${tag}-cubyte"
         podman build --build-arg UPSTREAM_TAG="$upstream_tag" -t "$image_name" .
