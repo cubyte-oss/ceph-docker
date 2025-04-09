@@ -22,13 +22,11 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
       run: |
-        tag="${GITHUB_REF##*/}"
-        upstream_tag="$tag"
-        if [ "$tag" = "main" ]
-        then
-          upstream_tag="v19"
-        fi
-        image_name="ghcr.io/cubyte-oss/ceph:${tag}-cubyte"
-        podman build --build-arg UPSTREAM_TAG="$upstream_tag" -t "$image_name" .
-        podman push "$image_name"
+        repo="ghcr.io/cubyte-oss/ceph"
+        tmp_image="$repo:latest"
+        podman build -t "$tmp_image" .
+        tag="v$(podman run --rm -it "$tmp_image" ceph -v 2>&1 | grep -oP '[0-9]+\.[0-9]+\.[0-9]+')-cubyte"
+        image="$repo:$tag"
+        podman tag "$tmp_image" "$image"
+        podman push "$image"
 

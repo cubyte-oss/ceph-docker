@@ -1,6 +1,6 @@
-ARG UPSTREAM_TAG
+FROM quay.io/ceph/ceph:v19.2.1 AS upstream
 
-FROM quay.io/ceph/ceph:$UPSTREAM_TAG AS build
+FROM upstream AS build
 
 RUN dnf install -y automake curl-minimal gcc gcc-c++ make
 
@@ -16,7 +16,7 @@ RUN ./autogen.sh \
  && ./configure \
  && make
 
-FROM quay.io/ceph/ceph:$UPSTREAM_TAG
+FROM upstream
 
 COPY --from=build /build/smartctl /usr/sbin/smartctl
 
