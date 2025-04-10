@@ -1,4 +1,4 @@
-FROM quay.io/ceph/ceph:v19.2.1 AS upstream
+FROM quay.io/ceph/ceph:v19.2.2 AS upstream
 
 FROM upstream AS build
 
