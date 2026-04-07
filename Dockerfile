@@ -1,4 +1,4 @@
-FROM quay.io/ceph/ceph:v20.2.1 AS upstream
+FROM quay.io/ceph/ceph:v20.2.1@sha256:0bae386bc859cd9a05b804d1ca16cca8853a64f90809044e2bf43095419dc337 AS upstream
 
 FROM upstream AS build
 
